@@ -503,13 +503,13 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         this.leftSticks.init();
         this.leftSticks.mesh.position.setX(-(options.roadWidth + options.islandWidth / 2));
 
-        this.container.addEventListener('mousedown', this.onMouseDown);
-        this.container.addEventListener('mouseup', this.onMouseUp);
-        this.container.addEventListener('mouseout', this.onMouseUp);
+        window.addEventListener('mousedown', this.onMouseDown);
+        window.addEventListener('mouseup', this.onMouseUp);
+        window.addEventListener('mouseout', this.onMouseUp);
 
-        this.container.addEventListener('touchstart', this.onTouchStart, { passive: true });
-        this.container.addEventListener('touchend', this.onTouchEnd, { passive: true });
-        this.container.addEventListener('touchcancel', this.onTouchEnd, { passive: true });
+        window.addEventListener('touchstart', this.onTouchStart, { passive: true });
+        window.addEventListener('touchend', this.onTouchEnd, { passive: true });
+        window.addEventListener('touchcancel', this.onTouchEnd, { passive: true });
 
         this.container.addEventListener('contextmenu', this.onContextMenu);
 
@@ -617,14 +617,15 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         }
 
         window.removeEventListener('resize', this.onWindowResize);
-        if (this.container) {
-          this.container.removeEventListener('mousedown', this.onMouseDown);
-          this.container.removeEventListener('mouseup', this.onMouseUp);
-          this.container.removeEventListener('mouseout', this.onMouseUp);
+        window.removeEventListener('mousedown', this.onMouseDown);
+        window.removeEventListener('mouseup', this.onMouseUp);
+        window.removeEventListener('mouseout', this.onMouseUp);
 
-          this.container.removeEventListener('touchstart', this.onTouchStart);
-          this.container.removeEventListener('touchend', this.onTouchEnd);
-          this.container.removeEventListener('touchcancel', this.onTouchEnd);
+        window.removeEventListener('touchstart', this.onTouchStart);
+        window.removeEventListener('touchend', this.onTouchEnd);
+        window.removeEventListener('touchcancel', this.onTouchEnd);
+
+        if (this.container) {
           this.container.removeEventListener('contextmenu', this.onContextMenu);
         }
       }
